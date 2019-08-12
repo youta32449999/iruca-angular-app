@@ -1,0 +1,20 @@
+<ng-container *ngIf="member">
+
+    <input type="text" [(ngModel)]="member.name">
+    <br>
+
+    <textarea [(ngModel)]="member.message" placeholder="ひとこと"></textarea>
+    <br>
+
+    <ng-container *ngIf="statuses">
+        <select name="status" id="status" [(ngModel)]="member.status">
+            <option *ngFor="let status of statuses" value="{{status}}">{{status}}</option>
+        </select>
+    </ng-container>
+    <br>
+</ng-container>
+
+
+<button (click)="goBack()">戻る</button>
+<button (click)="deleteMember()">削除</button>
+<button (click)="updateMember()">送信</button>

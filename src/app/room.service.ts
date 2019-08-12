@@ -58,7 +58,7 @@ export class RoomService {
    * @param memberId
    */
   getMember(roomCode: string, memberId: number): Observable<Member> {
-    const requestUrl = this.baseUrl + roomCode + '/members' + memberId;
+    const requestUrl = this.baseUrl + roomCode + '/members/' + memberId;
 
     const result = this.http.get<Member>(requestUrl)
       .pipe(
@@ -67,6 +67,51 @@ export class RoomService {
       );
 
       return result;
+  }
+
+  /** メンバー情報を更新する */
+  updateMember(roomCode: string, memberId: number, member: Member): Observable<any> {
+    const requestUrl = this.baseUrl + roomCode + '/members/' + memberId;
+
+    const result = this.http.put(requestUrl, member, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+    return result;
+  }
+
+  /** メンバーを追加する */
+  addMember(roomCode: string, member: Member): Observable<any> {
+    const requestUrl = this.baseUrl + roomCode + '/members';
+
+    const result = this.http.post(requestUrl, member, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+    return result;
+  }
+
+  /** メンバーを削除する */
+  deleteMember(roomCode: string, memberId: number): Observable<any> {
+    const requestUrl = this.baseUrl + roomCode + '/members/' + memberId;
+
+    const result = this.http.delete(requestUrl)
+      .pipe(
+        catchError(this.handleError)
+      );
+    return result;
+  }
+
+  /** ステータスリストを取得する */
+  getStatuses(roomCode: string): Observable<string[]> {
+    const requestUrl = this.baseUrl + roomCode;
+
+    const result = this.http.get<Room>(requestUrl)
+      .pipe(
+        map(res => res.statuses),
+        catchError(this.handleError)
+      );
+    return result;
   }
 
   /** TODO:handleErrorの型が間違ってるので修正*/

@@ -1,3 +1,16 @@
+<ng-container *ngIf="statuses">
+    <input type="text" [(ngModel)]="addingMember.name" placeholder="名前"/>
+
+    <input type="text" [(ngModel)]="addingMember.message" placeholder="ひとこと"/>
+
+    <select name="status" id="status" [(ngModel)]="addingMember.status">
+        <option *ngFor="let status of statuses" value="{{status}}">{{status}}</option>
+    </select>
+
+    <button (click)="addMember()">追加</button>
+</ng-container>
+
+
 <ng-container *ngIf="members">
     <ul>
         <li *ngFor="let member of members">

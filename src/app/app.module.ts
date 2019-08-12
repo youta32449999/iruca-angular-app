@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 /** HttpClientを利用可能にする為にimport */
 import { HttpClientModule } from '@angular/common/http';
@@ -20,7 +21,8 @@ import { MemberDetailComponent } from './member-detail/member-detail.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule /** HttpClientを利用可能にする為にimport */
+    HttpClientModule, /** HttpClientを利用可能にする為にimport */
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
