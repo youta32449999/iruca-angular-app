@@ -1,3 +1,4 @@
+/** ルーム情報のレスポンスの型 */
 export class Room {
     id: number;
     code: string;

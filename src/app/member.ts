@@ -1,3 +1,4 @@
+/** メンバー情報のレスポンスの型 */
 export class Member {
     id: number;
     room_id: number;
