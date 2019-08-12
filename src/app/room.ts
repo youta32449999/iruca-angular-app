@@ -4,7 +4,7 @@ export class Room {
     code: string;
     name: string;
     note: string;
-    status: string[];
+    statuses: string[];
     created_at: string;
     updated_at: string;
     status_updated_at: string;

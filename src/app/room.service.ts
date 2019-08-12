@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Room } from './room';
+import { Member } from './member';
 
 /** POST, PUT, DELETEリクエストを送る際に必要 */
 const httpOptions = {
@@ -21,18 +22,51 @@ export class RoomService {
 
   constructor(private http: HttpClient) { }
 
-  /** roomIdはURLのパラメータから読み取る */
+  /** ルーム情報を取得する
+   * roomCodeはURLのパラメータから読み取る
+   */
   getRoom(roomCode: string): Observable<Room> {
     const requestUrl = this.baseUrl + roomCode;
 
     /** get<Room>としないと返り値の型はObjectになるので注意 */
     const result = this.http.get<Room>(requestUrl)
       .pipe(
-        tap(_ => console.log("get room info")),
+        /** ここに操作ログを入れる*/
+        catchError(this.handleError)
+      );
+      
+    return result;
+  }
+
+  /** ルーム内のメンバー情報を取得する
+   * roomCodeはURLのパラメータから
+  */
+  getRoomMembers(roomCode: string): Observable<Member[]> {
+    const requestUrl = this.baseUrl + roomCode + '/members';
+
+    const result = this.http.get<Member[]>(requestUrl)
+      .pipe(
+        /** ここに操作ログを入れる*/
         catchError(this.handleError)
       );
 
-    return result;
+      return result;
+  }
+
+  /** メンバーの詳細情報を取得する
+   * @param roomCode
+   * @param memberId
+   */
+  getMember(roomCode: string, memberId: number): Observable<Member> {
+    const requestUrl = this.baseUrl + roomCode + '/members' + memberId;
+
+    const result = this.http.get<Member>(requestUrl)
+      .pipe(
+        /** ここに操作ログを入れる */
+        catchError(this.handleError)
+      );
+
+      return result;
   }
 
   /** TODO:handleErrorの型が間違ってるので修正*/

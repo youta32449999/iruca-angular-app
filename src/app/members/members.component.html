@@ -1,0 +1,11 @@
+<ng-container *ngIf="members">
+    <ul>
+        <li *ngFor="let member of members">
+            <a routerLink='./{{member.id}}'>
+                <span>{{member.name}}</span>
+                <span>{{member.message}}</span>
+                <span>{{member.status}}</span>
+            </a>
+        </li>
+    </ul>
+</ng-container>
