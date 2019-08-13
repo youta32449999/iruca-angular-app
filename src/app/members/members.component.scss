@@ -1,0 +1,28 @@
+body {
+    width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+ul {
+    list-style: none;
+}
+
+.member_list {
+    display: flex;
+}
+.member_name {
+    width: 100px;
+    border: 1px solid #000;
+}
+
+.member_message {
+    width: 300px;
+    border: 1px solid #000;
+}
+
+.member_status {
+    width: 100px;
+    border: 1px solid #000;
+}

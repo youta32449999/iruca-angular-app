@@ -14,10 +14,10 @@
 <ng-container *ngIf="members">
     <ul>
         <li *ngFor="let member of members">
-            <a routerLink='./{{member.id}}'>
-                <span>{{member.name}}</span>
-                <span>{{member.message}}</span>
-                <span>{{member.status}}</span>
+            <a routerLink='./{{member.id}}'  class="member_list">
+                <div class="member_name">{{member.name}}</div>
+                <div class="member_message">{{member.message}}</div>
+                <div class="member_status">{{member.status}}</div>
             </a>
         </li>
     </ul>
